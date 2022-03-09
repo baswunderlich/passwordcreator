@@ -42,7 +42,7 @@ func main() {
 	}
 	for i := 0; i < lengthOfPassword; i++ {
 		erg := (seedNum ^ int(plattformTable[i%len(plattformTable)])) % len(chars)
-		fmt.Println(seedNum ^ int(plattformTable[i%len(plattformTable)]))
+		//fmt.Println(seedNum ^ int(plattformTable[i%len(plattformTable)]))
 		result += string(chars[erg])
 		seedNum = (erg + 1) ^ seedNumTable[(i+1)%len(seedNumTable)]
 		seedNumTable = append(seedNumTable, seedNum)
