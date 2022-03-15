@@ -24,6 +24,7 @@ function generate_password(lengthOfPassword, seed, plattform) {
     for(i = 0; i < lengthOfPassword; i++){
         erg = (seedNum ^ plattformTable[i%plattformTable.length]) % chars.length
         result = result + chars[erg]
+        plattformNum = seedNum ^ plattformTable[(i+1)%plattformTable.length]
         seedNum = (erg+1) ^ seedNumTable[(i+1)%seedNumTable.length]
         seedNumTable.push(seedNum)
     }
