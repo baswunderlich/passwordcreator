@@ -23,8 +23,14 @@ func main() {
 		lengthOfPassword = 25
 	}
 	fmt.Print("Bitte Seed eingeben:")
-	result := ""
 	seed := readNextString()
+	fmt.Print("Bitte Plattform eingeben:")
+	plattform := readNextString()
+	fmt.Println("Your password:", GeneratePassword(lengthOfPassword, seed, plattform))
+}
+
+func GeneratePassword(lengthOfPassword int, seed string, plattform string) string {
+	result := ""
 	var seedNum int = 0
 	seedNumTable := make([]int, 2)
 	for i := 0; i < len(seed); i++ {
@@ -34,8 +40,7 @@ func main() {
 	for i, v := range seedNumTable {
 		seedNumTable[i] = v ^ seedNum
 	}
-	fmt.Print("Bitte Plattform eingeben:")
-	plattform := readNextString()
+
 	plattformTable := make([]byte, 2)
 	for i := 0; i < len(plattform); i++ {
 		plattformTable = append(plattformTable, byte(plattform[i]))
@@ -47,7 +52,8 @@ func main() {
 		seedNum = (erg + 1) ^ seedNumTable[(i+1)%len(seedNumTable)]
 		seedNumTable = append(seedNumTable, seedNum)
 	}
-	fmt.Println("Your password:", result)
+
+	return result
 }
 
 func readNextString() string {
